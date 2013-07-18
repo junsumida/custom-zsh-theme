@@ -13,7 +13,7 @@ git_custom_status() {
 
 #RVM and git settings
 if [[ -s ~/.rvm/scripts/rvm ]] ; then 
-  RPS1='$(git_custom_status)%{$fg[red]%}[`hostname`][`perlbrew info current | grep Name: | sed -e "s/Name://" | sed -e "s/\s//g"`][`~/.rvm/bin/rvm-prompt`]%{$reset_color%} $EPS1'
+  RPS1='$(git_custom_status)%{$fg[red]%}[`perlbrew info current | grep Name: | sed -e "s/Name://" | sed -e "s/\s//g"`][`~/.rvm/bin/rvm-prompt`]%{$reset_color%} $EPS1'
 else
   if which rbenv &> /dev/null; then
     RPS1='$(git_custom_status)%{$fg[red]%}[`rbenv version | sed -e "s/ (set.*$//"`]%{$reset_color%} $EPS1'
@@ -22,4 +22,4 @@ else
   fi
 fi
 
-PROMPT='%{$fg[cyan]%}[%~% ]%(?.%{$fg[green]%}.%{$fg[red]%})%B$%b '
+PROMPT=[%n@`hostname`]$'\n''%{$fg[cyan]%}[%~% ]%(?.%{$fg[green]%}.%{$fg[red]%})%B$%b '
